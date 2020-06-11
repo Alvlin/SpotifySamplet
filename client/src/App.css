@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+}
+.track-card{
+  width: 90px;
+  height: 90px;
+  margin: 0 auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-x: center
+}
+#container{
+  display: grid;
+  grid-template-columns: 300px 300px 300px;
+  margin: auto;
+  text-align: center;
+  width: 50%;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
