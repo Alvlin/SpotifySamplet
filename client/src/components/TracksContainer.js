@@ -6,10 +6,12 @@ import React from 'react'
 
 const TracksContainer = (props) => {
     
+    // console.log(props)
     return(
-        <div id="container">
+        <div id='container'>
+        
         </div>
     )
 }
 
-export default TracksContainer;
+export default TracksContainer; 

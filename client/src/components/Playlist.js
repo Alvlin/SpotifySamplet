@@ -4,7 +4,7 @@ class Playlist extends Component{
     render(){
         return(
             <div className="side" >
-             
+        
             </div>
         )
     }
