@@ -13,10 +13,10 @@ class AlbumCard extends Component {
         super()
         this.state = {
             isPaneOpen: false,
-            isPaneOpenLeft: false
+            isPaneOpenLeft: false,
+            albumTracks: null,
         }
     }
-
     handleClick = () => {
         console.log(apiTok);
         this.setState({ isPaneOpenLeft: true })
@@ -34,18 +34,8 @@ class AlbumCard extends Component {
             }
         })
         .then(resp => resp.json())
-        .then(function(data){
-          console.log('asdsadsa',data);
-          ReactDOM.render(
-            <ul>
-              {data.items.map((val) =>
-              <TrackList  key={val.id}  data={val}/>)}
-            </ul>,
-            document.getElementById('album-tracks')
-          )
-
-
-        })
+        .then(data => this.setState({albumTracks: data.items.map((val) =>
+                      <TrackList  key={val.id}  data={val}/>)}))
 
 
 
@@ -62,14 +52,13 @@ class AlbumCard extends Component {
             <p> {this.props.data.name}</p>
             </div>
             <SlidingPane
-              // closeIcon={<div>X</div>}
               isOpen={this.state.isPaneOpenLeft}
               from="left"
               width="400px"
               onRequestClose={() => this.setState({ isPaneOpenLeft: false })}
             >
-          <div id="album-tracks"><p> STUFF </p></div>
-        </SlidingPane>
+              <div id="album-tracks">{this.state.albumTracks}</div>
+            </SlidingPane>
 
         </div>
         )
