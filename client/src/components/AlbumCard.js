@@ -33,30 +33,23 @@ class AlbumCard extends Component {
         .then(resp => resp.json())
         .then(data => this.setState({albumTracks: data.items.map((val) =>
                       val.preview_url ? (<TrackList key={val.id} data={val} />) : null)}))
-
-
-
-
     }
 
     render(){
-      albumImg = this.props.data.images[1].url;
+        albumImg = this.props.data.images[1].url;
         return(
-        <div>
+          <div>
             <div className="track-card" >
-            <img onClick={this.handleClick} src={this.props.data.images[1].url} alt='AlbumImg'  />
-            <p> {this.props.data.name}</p>
+              <img onClick={this.handleClick} src={this.props.data.images[1].url} alt='AlbumImg'  />
+              <p> {this.props.data.name}</p>
             </div>
-            <SlidingPane
-              isOpen={this.state.isPaneOpenLeft}
-              from="left"
-              width="400px"
-              onRequestClose={() => this.setState({ isPaneOpenLeft: false })}
-            >
-              <div id="album-tracks">{this.state.albumTracks}</div>
+            <SlidingPane isOpen={this.state.isPaneOpenLeft} from="left" width="400px" onRequestClose={() => this.setState({ isPaneOpenLeft: false })}>
+              <div id="album-tracks">
+                {this.state.albumTracks}
+              </div>
             </SlidingPane>
 
-        </div>
+          </div>
         )
     }
 }

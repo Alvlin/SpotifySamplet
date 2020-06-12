@@ -104,7 +104,6 @@ class App extends Component {
             j.sort((a,b) => a.duration_ms - b.duration_ms);
           }
           cards = data.albums.items.map((val) => <AlbumCard  key={val.id}  data={val} img={val} />);
-          console.log('cards',cards);
           ReactDOM.render(cards,document.getElementById('container'))
           break;
         case 'artist':
@@ -138,8 +137,7 @@ class App extends Component {
           cards = y.map((val) => val.preview_url ? (<TrackCard key={val.id} data={val} img={val.album}/>) : null);
           ReactDOM.render(cards,document.getElementById('container'))
           break;
-        case "album,artist,track":
-        break;
+      
       }
     })
     }
@@ -160,7 +158,6 @@ class App extends Component {
           <option value="album">Album</option>
           <option value="artist">Artist</option>
           <option value="track">Track</option>
-          <option value="album,artist,track">All</option>
         </select>
         <select id='tracks' defaultValue={this.state.sortType} onChange={this.changeSortType} >
           {options.map(o => <option key={o.id} value={o.text}>{o.text}</option>)}
