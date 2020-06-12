@@ -1,32 +1,32 @@
 import React, { Component } from 'react'
 
 class ArtistCard extends Component {
-    
 
-    
+
+
 
 
     render(){
         console.log(this.props.data)
             if(this.props.data.images.length > 0){
-                return ( 
+                return (
                     <div>
                         <div className="track-card">
-                    <img src= {this.props.data.images[0].url}/>
+                    <img src= {this.props.data.images[0].url} alt='ArtistImg'/>
                     <p> {this.props.data.name}</p>
                     <p> {this.props.data.followers.total}</p>
                     <p> {this.props.data.popularity}</p>
 
-                        </div> 
+                        </div>
                     </div>
                     )
             }
             else {
                 return null
             }
-    
-               
+
+
            }
 }
 
-export default ArtistCard; 
+export default ArtistCard;

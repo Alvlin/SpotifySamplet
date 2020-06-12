@@ -14,6 +14,7 @@ class TrackCard extends Component{
 
 
     handleHover = () => {
+      console.log(this.props.data.preview_url);
         if (this.state.sound != null) {
             if (!this.state.sound.playing()) {
               this.state.sound.stop();
@@ -39,8 +40,6 @@ class TrackCard extends Component{
       }
 
       render(){
-        let audioClip = [{sound: this.props.data.preview_url}];
-
         this.state.sound = new Howl({
             src: [this.props.data.preview_url],
             html5: true,
@@ -48,9 +47,9 @@ class TrackCard extends Component{
           });
 
         return(
-          <div className='track-list' >
-            <li>
-              <img style={{width: '60px', height: '60px', verticalAlign:'middle'}} src={albumImg} onMouseOver={this.handleHover} onMouseOut={this.handleHoverOut} />
+          <div className='track-list' onMouseOver={this.handleHover} onMouseOut={this.handleHoverOut}>
+            <li >
+              <img style={{width: '60px', height: '60px', verticalAlign:'middle'}} src={albumImg}  />
               &emsp;
               {this.props.data.name}
             </li>

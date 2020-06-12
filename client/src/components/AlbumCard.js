@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import AlbumTrackCard from './AlbumTrackCard'
 import SlidingPane from "react-sliding-pane";
 import "react-sliding-pane/dist/react-sliding-pane.css";
 import {apiTok} from './../App.js'
-import ReactDOM from 'react-dom'
 import TrackList from './TrackList'
 import "../css/albumcard.css";
 
@@ -20,7 +18,6 @@ class AlbumCard extends Component {
     handleClick = () => {
         console.log(apiTok);
         this.setState({ isPaneOpenLeft: true })
-        // console.log('ALBUM TRACKS')
         const id = this.props.data.id
         const baseUrl = 'https://api.spotify.com/v1/albums/'
         const auth_token = 'Bearer ' + apiTok
@@ -35,7 +32,7 @@ class AlbumCard extends Component {
         })
         .then(resp => resp.json())
         .then(data => this.setState({albumTracks: data.items.map((val) =>
-                      <TrackList  key={val.id}  data={val}/>)}))
+                      val.preview_url ? (<TrackList key={val.id} data={val} />) : null)}))
 
 
 
@@ -44,11 +41,10 @@ class AlbumCard extends Component {
 
     render(){
       albumImg = this.props.data.images[1].url;
-        console.log(this.state.isPaneOpenLeft)
         return(
         <div>
             <div className="track-card" >
-            <img onClick={this.handleClick} src={this.props.data.images[1].url} alt=''  />
+            <img onClick={this.handleClick} src={this.props.data.images[1].url} alt='AlbumImg'  />
             <p> {this.props.data.name}</p>
             </div>
             <SlidingPane
