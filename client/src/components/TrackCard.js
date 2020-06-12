@@ -3,30 +3,29 @@ import {Howl} from "howler";
 
 
 class TrackCard extends Component{
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
            sort: [],
            sound: null,
         }
     }
 
+    static aSongPlaying = false;
 
     handleHover = () => {
-        if (this.state.sound != null) {
-            if (!this.state.sound.playing()){
-              this.state.sound.play();
-            }
+        this.aSongPlaying = false;
+        if (!this.aSongPlaying) {
+          this.state.sound.play();
+          this.aSongPlaying = true;
         }
       }
 
       handleHoverOut = () => {
-        if (this.state.sound != null) {
-            if (!this.state.sound.playing()) {}
-            else {
-              this.state.sound.stop();
-              this.state.sound.unload();
-            }
+        this.aSongPlaying = true;
+        if (this.aSongPlaying) {
+          this.state.sound.stop();
+          this.aSongPlaying = false;
         }
       }
 
